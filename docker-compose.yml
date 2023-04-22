@@ -21,19 +21,19 @@ services:
     networks:
       - covid-network
 
-#  web-client:
-#    build: .
-#    ports:
-#      - "8082:8081"
-#    environment:
-#      POSTGRESQL_DATABASE: covid_service
-#      POSTGRESQL_USERNAME: postgres
-#      POSTGRESQL_PASSWORD: postgres
-#      POSTGRESQL_HOST: postgres_db
-#    networks:
-#      - covid-network
-#    depends_on:
-#      - postgres_db
+  web-client:
+    build: .
+    ports:
+      - "8082:8081"
+    environment:
+      POSTGRESQL_DATABASE: covid_service
+      POSTGRESQL_USERNAME: postgres
+      POSTGRESQL_PASSWORD: postgres
+      POSTGRESQL_HOST: postgres_db
+    networks:
+      - covid-network
+    depends_on:
+      - postgres_db
 
 volumes:
   covid-postgres-data:
