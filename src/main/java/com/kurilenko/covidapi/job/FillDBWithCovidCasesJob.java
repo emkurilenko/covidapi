@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 /*
 Job for fill database with new covid cases for not existed countries in database
  */
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class FillDBWithCovidCasesJob extends BaseJob {
@@ -41,15 +43,20 @@ public class FillDBWithCovidCasesJob extends BaseJob {
     List<String> notExistedCountryCodes =
         covidCasesService.findNotExistedCountryCodes(availableCountriesMap.keySet());
 
-    notExistedCountryCodes.forEach(code -> process(availableCountriesMap.get(code), code));
+    notExistedCountryCodes
+        .forEach(code -> process(availableCountriesMap.get(code), code));
 
     return true;
   }
 
   private void process(String slug, String code) {
-    List<CovidCasesDto> newCasesByCountry =
-        covidCasesStatisticFacade.calculateNewCasesByCountry(slug, code);
-    newCasesByCountry.forEach(covidCasesService::save);
+    try {
+      List<CovidCasesDto> newCasesByCountry =
+          covidCasesStatisticFacade.calculateNewCasesByCountry(slug, code);
+      newCasesByCountry.forEach(covidCasesService::save);
+    } catch (Exception e) {
+      log.error("Error to persist covid new cases for country: {} {}", code, e.getMessage());
+    }
   }
 
 }

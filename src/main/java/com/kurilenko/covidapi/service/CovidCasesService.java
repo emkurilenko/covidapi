@@ -48,7 +48,7 @@ public class CovidCasesService {
   }
 
   @Transactional
-  public List<CountryCovidStatsDto> getMaxAndMinNewCasesStatisticByCountryCodes(
+  public List<CountryCovidStatsDto> getNewCasesStatisticByCountryCodes(
       List<String> countryCodes,
       LocalDate fromDate,
       LocalDate toDate

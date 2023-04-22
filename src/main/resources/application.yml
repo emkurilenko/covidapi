@@ -22,5 +22,5 @@ web-client:
   retry:
     max-attempts: ${WEB_CLIENT_RETRY_MAX_ATTEMPTS:3}
     min-backoff:
-      amount: ${WEB_CLIENT_RETRY_MIN_BACKOFF_AMOUNT:2}
+      amount: ${WEB_CLIENT_RETRY_MIN_BACKOFF_AMOUNT:5}
       unit: ${WEB_CLIENT_RETRY_MIN_BACKOFF_UNIT:SECONDS}

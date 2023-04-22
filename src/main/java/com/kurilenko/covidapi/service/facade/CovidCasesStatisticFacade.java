@@ -47,14 +47,16 @@ public class CovidCasesStatisticFacade {
     }
 
     return covidCasesService
-        .getMaxAndMinNewCasesStatisticByCountryCodes(countryCodes, fromDate, toDate);
+        .getNewCasesStatisticByCountryCodes(countryCodes, fromDate, toDate);
   }
 
   public List<CovidCasesDto> calculateNewCasesByCountry(String slug, String code) {
     Map<LocalDate, Integer> mapDateByCases = covidApiClient.getCovidDataByCountry(slug)
         .stream()
         .collect(
-            Collectors.toMap(key -> key.getDate().toLocalDate(), CovidDataResponse::getCases));
+            Collectors.toMap(key -> key.getDate().toLocalDate(), CovidDataResponse::getCases,
+                (r1, r2) -> r2
+            ));
     return calculateNewCase(mapDateByCases, code);
   }
 
