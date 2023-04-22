@@ -1,0 +1,26 @@
+server:
+  port: ${SERVER_PORT:8082}
+spring:
+  profiles:
+    include: jobs
+  application.name: ${APPLICATION_NAME:covid-service}
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:${POSTGRESQL_PORT:5432}/${POSTGRESQL_DATABASE:covid_service}
+    username: ${POSTGRESQL_USERNAME:postgres}
+    password: ${POSTGRESQL_PASSWORD:postgres}
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yml
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+covid-api:
+  host: ${COVID_API_HOST:https://api.covid19api.com}
+
+web-client:
+  retry:
+    max-attempts: ${WEB_CLIENT_RETRY_MAX_ATTEMPTS:3}
+    min-backoff:
+      amount: ${WEB_CLIENT_RETRY_MIN_BACKOFF_AMOUNT:2}
+      unit: ${WEB_CLIENT_RETRY_MIN_BACKOFF_UNIT:SECONDS}
