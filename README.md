@@ -19,7 +19,7 @@ Implemented 2 endpoints
 
 GET: [/api/country](http://localhost:8082/swagger-ui/index.html#/country-controller/availableCountries)
 
-2. Get max and min statistic for countries
+2. Get max and min number of new cases statistic for countries
 
 GET: [/api/statistics/new-cases](http://localhost:8082/swagger-ui/index.html#/covid-stats-controller/getMaxAndMinNewCasesStatisticByCountryCodes)
 
