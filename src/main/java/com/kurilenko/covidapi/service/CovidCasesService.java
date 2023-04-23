@@ -37,17 +37,6 @@ public class CovidCasesService {
   }
 
   @Transactional
-  public CovidCasesDto save(CovidCasesDto dto) {
-    CovidCasesEntity entity = CovidCasesEntity.builder()
-        .newCases(dto.getCases())
-        .country(new CountryEntity(dto.getCountryCode()))
-        .date(dto.getDate())
-        .build();
-    entity = covidCasesRepository.save(entity);
-    return mapToDto(entity);
-  }
-
-  @Transactional
   public CovidCasesDto updateNewCasesByDate(CovidCasesDto dto) {
     CovidCasesEntity entity = covidCasesRepository.findByCountry_CodeAndDate(
             dto.getCountryCode(), dto.getDate())

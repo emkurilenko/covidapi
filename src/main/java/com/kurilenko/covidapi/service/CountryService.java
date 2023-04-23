@@ -15,6 +15,7 @@ public class CountryService {
 
   private final CountryRepository countryRepository;
 
+  @Transactional
   public List<CountryDto> getAll() {
     return countryRepository.findAll()
         .stream()
@@ -22,6 +23,7 @@ public class CountryService {
         .toList();
   }
 
+  @Transactional
   public List<CountryDto> findByCountryCodes(List<String> countryCodes) {
     return countryRepository.findAllByCodeIn(countryCodes)
         .stream()
@@ -38,12 +40,6 @@ public class CountryService {
         .build();
     entityForPersist = countryRepository.save(entityForPersist);
     return mapToDto(entityForPersist);
-  }
-
-  @Transactional
-  public Optional<CountryDto> getByCode(String code) {
-    return countryRepository.findCountryEntityByCode(code)
-        .map(CountryService::mapToDto);
   }
 
   private static CountryDto mapToDto(CountryEntity entity) {
