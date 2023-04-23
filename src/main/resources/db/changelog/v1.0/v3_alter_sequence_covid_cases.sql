@@ -1,0 +1,1 @@
+alter sequence covid_cases_id_seq increment by 50;

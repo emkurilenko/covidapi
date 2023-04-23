@@ -1,8 +1,6 @@
 package com.kurilenko.covidapi.domain.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -16,8 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "countries")
-public class CountryEntity {
-
+public class CountryEntity implements BaseEntity<String> {
 
   @Id
   private String code;
@@ -28,5 +25,10 @@ public class CountryEntity {
 
   public CountryEntity(String code) {
     this.code = code;
+  }
+
+  @Override
+  public String getId() {
+    return code;
   }
 }

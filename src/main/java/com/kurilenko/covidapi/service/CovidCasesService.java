@@ -5,6 +5,7 @@ import com.kurilenko.covidapi.domain.entity.CovidCasesEntity;
 import com.kurilenko.covidapi.domain.repository.CovidCasesRepository;
 import com.kurilenko.covidapi.dto.CountryCovidStatsDto;
 import com.kurilenko.covidapi.dto.CovidCasesDto;
+import com.kurilenko.covidapi.util.BatchPersist;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
@@ -18,6 +19,22 @@ import org.springframework.transaction.annotation.Transactional;
 public class CovidCasesService {
 
   private final CovidCasesRepository covidCasesRepository;
+  private final BatchPersist batchPersist;
+
+  @Transactional
+  public List<CovidCasesDto> saveUsingBatch(List<CovidCasesDto> dtos) {
+    List<CovidCasesEntity> entities = dtos.stream()
+        .map(dto -> CovidCasesEntity.builder()
+            .newCases(dto.getCases())
+            .country(new CountryEntity(dto.getCountryCode()))
+            .date(dto.getDate())
+            .build())
+        .toList();
+    return batchPersist.batchInsert(entities)
+        .stream()
+        .map(this::mapToDto)
+        .toList();
+  }
 
   @Transactional
   public CovidCasesDto save(CovidCasesDto dto) {

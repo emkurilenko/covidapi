@@ -29,8 +29,7 @@ if not there are such countries in the database, call API and get data on these 
 
 Implemented 3 jobs 
 1. For filling db with countries from API (auto run once after start application)
-2. For filling db with new covid cases for countries which not data existed 
-3. For filling with daily summary new cases
+2. For filling with daily summary new cases
 
 # Start application
 In terminal run command:

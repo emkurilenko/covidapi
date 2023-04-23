@@ -42,8 +42,7 @@ public class CovidCasesStatisticFacade {
           .entrySet()
           .stream()
           .map(entry -> calculateNewCasesByCountry(entry.getKey(), entry.getValue()))
-          .flatMap(Collection::stream)
-          .forEach(covidCasesService::save);
+          .forEach(covidCasesService::saveUsingBatch);
     }
 
     return covidCasesService
