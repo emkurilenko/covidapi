@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: test
+    include:
+      - integration
+      - audit
+      - masking
+      - monitoring
+  application.name: covid-api
+  jackson.default-property-inclusion: non_null
+  jpa:
+    database: POSTGRESQL
+    show-sql: false
+    open-in-view: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: user
+    password: pass
