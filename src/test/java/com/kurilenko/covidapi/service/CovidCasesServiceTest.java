@@ -14,7 +14,7 @@ import com.kurilenko.covidapi.domain.repository.CovidCasesRepository;
 import com.kurilenko.covidapi.domain.repository.CovidCasesRepository.CountryCovidStatistic;
 import com.kurilenko.covidapi.dto.CountryCovidStatsDto;
 import com.kurilenko.covidapi.dto.CovidCasesDto;
-import com.kurilenko.covidapi.util.BatchPersist;
+import com.kurilenko.covidapi.util.BatchPersistService;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -68,7 +68,7 @@ public class CovidCasesServiceTest {
   @MockBean
   private CovidCasesRepository covidCasesRepository;
   @MockBean
-  private BatchPersist batchPersist;
+  private BatchPersistService batchPersist;
 
   @Autowired
   private CovidCasesService covidCasesService;

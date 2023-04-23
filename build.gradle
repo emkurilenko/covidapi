@@ -45,7 +45,8 @@ dependencies {
   testImplementation group: 'org.testcontainers', name: 'postgresql', version: '1.18.0'
   testCompileOnly 'org.projectlombok:lombok'
   testAnnotationProcessor 'org.projectlombok:lombok'
-  implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-contract-stub-runner', version: '4.0.2'
+  testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-contract-stub-runner', version: '4.0.2'
+
 }
 
 tasks.named('test') {
