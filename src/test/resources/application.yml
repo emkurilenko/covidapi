@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: test
+    include: jobs
+  application.name: covid-api
+  jackson.default-property-inclusion: non_null
+  jpa:
+    database: POSTGRESQL
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: ${MAX_POSSIBLE_BATCH_SIZE_HIBERNATE:100}
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: user
+    password: pass
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yml
+
+web-client:
+  retry:
+    max-attempts: ${WEB_CLIENT_RETRY_MAX_ATTEMPTS:3}
+    min-backoff:
+      amount: ${WEB_CLIENT_RETRY_MIN_BACKOFF_AMOUNT:5}
+      unit: ${WEB_CLIENT_RETRY_MIN_BACKOFF_UNIT:SECONDS}

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BatchPersist {
+public class BatchPersistService {
 
   @PersistenceContext
   private EntityManager entityManager;

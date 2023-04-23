@@ -1,0 +1,5 @@
+jobs:
+  daily-summary-cases:
+    cron: ${JOB_DAILY_SUMMARY_CRON:0 0 0/12 ? * * } #every 12 hours
+  fill-db-with-covid-cases:
+    cron: ${JOB_FILL_DB_WITH_COVID_CASES:0 0 0 * * ?} #every day at 12:00 AM

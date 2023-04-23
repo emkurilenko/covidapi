@@ -8,7 +8,6 @@ import com.kurilenko.covidapi.service.CovidCasesService;
 import com.kurilenko.covidapi.service.client.CovidApiClient;
 import com.kurilenko.covidapi.service.client.response.CovidDataResponse;
 import java.time.LocalDate;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
