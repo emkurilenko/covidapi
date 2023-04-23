@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -21,10 +22,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "covid_cases")
-public class CovidCasesEntity {
+public class CovidCasesEntity implements BaseEntity<Long> {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqGen")
+  @SequenceGenerator(name = "seqGen", sequenceName = "covid_cases_id_seq")
   private Long id;
 
   @ManyToOne

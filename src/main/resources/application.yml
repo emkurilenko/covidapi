@@ -9,6 +9,14 @@ spring:
     url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:${POSTGRESQL_PORT:5432}/${POSTGRESQL_DATABASE:covid_service}
     username: ${POSTGRESQL_USERNAME:postgres}
     password: ${POSTGRESQL_PASSWORD:postgres}
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: ${MAX_POSSIBLE_BATCH_SIZE_HIBERNATE:100}
+          batch_versioned_data: true
+        order_updates: true
+        order_inserts: true
   liquibase:
     change-log: classpath:/db/changelog/db.changelog-master.yml
   mvc:
